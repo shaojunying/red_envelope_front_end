@@ -5,7 +5,7 @@
     <br>
     用户id: <input type="number" v-model.number="req.uid">
     <br>
-    红包id: <input type="number" v-model.number="req.envelope_id">
+    红包id（仅拆红包输入）: <input type="number" v-model.number="req.envelope_id">
     <br>
     <button @click="snatch">抢红包</button>
     <button @click="open">拆红包</button>
@@ -14,11 +14,13 @@
     {{ msg }}
     <table v-if="show_table">
       <tr>
+        <th>红包id</th>
         <th>已拆开</th>
         <th>面值</th>
         <th>获取时间</th>
       </tr>
       <tr v-for="(item, index) in envelope_list" :key="index">
+        <td>{{ item.envelope_id }}</td>
         <td>{{ item.opened }}</td>
         <td>{{ show_value(item.value) }}</td>
         <td>{{ getLocalTime(item.snatch_time) }}</td>
@@ -68,7 +70,8 @@ export default {
               if (resp.data.code !== 0) {
                 this.msg = "抢红包失败：" + resp.data.code + ":" + resp.data.msg
               } else {
-                this.msg = "抢红包成功，当前第" + resp.data.data.cur_count + "次，最多抢" + resp.data.data.max_count + "次"
+                this.msg = "抢红包成功，红包id:" + resp.data.data.envelope_id +
+                    "\n\n当前第" + resp.data.data.cur_count + "次，最多抢" + resp.data.data.max_count + "次\n"
               }
             }
           });

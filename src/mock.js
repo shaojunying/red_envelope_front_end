@@ -5,7 +5,8 @@ Mock.mock('/snatch', {
     'msg': 'success',
     'data': {
         'cur_count': 1,
-        'max_count': 4
+        'max_count': 4,
+        "envelope_id": 123,
     }
 });
 
@@ -33,11 +34,13 @@ Mock.mock('/get_wallet_list', {
         "amount": 112,    // 钱包总额，“分”为单位
         "envelope_list": [
             {
+                "envelope_id": 123,
                 "value": 50,     // 红包面值
                 "opened": true,   // 是否已拆开
                 "snatch_time": 1634551711     // 红包获取时间，UNIX时间戳
             },
             {
+                "envelope_id": 124,
                 "opened": false,   // 未拆开的红包不显示value
                 "snatch_time": 1634551711
             }
