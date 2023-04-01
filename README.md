@@ -1,5 +1,7 @@
 # red_envelope
 
+红包雨项目的前端代码，在此进行备份～
+
 ## Project setup
 ```
 npm install
